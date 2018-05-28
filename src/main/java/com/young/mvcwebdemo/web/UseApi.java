@@ -37,6 +37,6 @@ public class UseApi {
                 "</p>\n" +
                 "</body>\n" +
                 "</html>";*/
-                return "<strong>123</strong>";
+                return "<strong>"+value+"</strong>";
     }
 }
