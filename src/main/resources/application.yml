@@ -1,6 +1,5 @@
 
 
-
 #Spring-rabbitMQ
 #是访问port不是15672,15672是api和管理界面的port
 spring:
@@ -22,3 +21,5 @@ spring:
 
 
 
+
+debug: true
