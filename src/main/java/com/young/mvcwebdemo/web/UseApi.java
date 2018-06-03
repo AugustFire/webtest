@@ -1,12 +1,14 @@
 package com.young.mvcwebdemo.web;
 
 
-import com.young.mvcwebdemo.web.domian.User;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * note:当注册jersey后.spring_mvc失效
+ */
 
 @RestController
 @RequestMapping("/kingsilk/user")
