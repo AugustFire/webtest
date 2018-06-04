@@ -45,4 +45,14 @@ public class User {
     public void setDog(Dog dog) {
         this.dog = dog;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", dog=" + dog.getName() +
+                '}';
+    }
 }
