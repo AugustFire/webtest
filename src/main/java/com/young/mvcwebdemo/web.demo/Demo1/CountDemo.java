@@ -14,13 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class CountDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         System.out.println(System.currentTimeMillis());
-        CountDownLatch latch = new CountDownLatch(2){
-            @Override
-            public void await() throws InterruptedException {
-                //设置超时时间
-                super.await(1, TimeUnit.SECONDS);
-            }
-        };
         TaskA taskA = new TaskA();
         TaskB taskB = new TaskB();
         FutureTask<Integer> futureTaskA = new FutureTask<>(taskA);
