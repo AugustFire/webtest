@@ -1,8 +1,13 @@
 package com.young.mvcwebdemo.web;
 
+import com.young.mvcwebdemo.web.dao.UserRepo;
+import com.young.mvcwebdemo.web.domian.User;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
@@ -18,6 +23,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Project: mvcweb-demo.
@@ -30,7 +36,9 @@ import java.util.Date;
 @Component
 public class CustomerApi {
 
-//    private static final Logger LOGGER = Logger.getLogger(CustomerApi.class);
+
+    @Autowired
+    UserRepo userRepo;
 
     @Path("/export/{id}")
     @GET
@@ -64,4 +72,17 @@ public class CustomerApi {
         FileCopyUtils.copy(is,output);
 
     }
+
+
+    private static Logger logger = LoggerFactory.getLogger(CustomerApi.class);
+
+    @Path("/queryUser")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> queryList(){
+        logger.info("hello!I am your logger!");
+        List<User> all = userRepo.findAll();
+        return all;
+    }
+
 }

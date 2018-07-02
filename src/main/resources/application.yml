@@ -10,16 +10,16 @@ spring:
     password: guest
     publisher-confirms: true
     virtual-host: /
-#  data:
-#    mongodb:
-#      database: test1
-#      port: 27017
-#      host: '192.168.0.12'
-#      username: 'test1'
-#      password: '123456'
+  data:
+    mongodb:
+      database: test1
+      port: 27017
+      host: '192.168.0.12'
+      username: 'test1'
+      password: '123456'
 
 
 
 
 
-debug: true
+#debug: true
