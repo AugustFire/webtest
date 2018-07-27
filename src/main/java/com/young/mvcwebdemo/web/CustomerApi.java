@@ -7,6 +7,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
@@ -36,6 +37,9 @@ import java.util.List;
 @Component
 public class CustomerApi {
 
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Autowired
     UserRepo userRepo;
@@ -84,5 +88,18 @@ public class CustomerApi {
         List<User> all = userRepo.findAll();
         return all;
     }
+
+    @Path("/message/{info}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String sendMessage(
+            @PathParam(value = "info") String message
+    ) {
+        System.out.println(message);
+        //把message发送到mq
+        amqpTemplate.convertAndSend("exchange1",null,message);
+        return message;
+    }
+
 
 }
