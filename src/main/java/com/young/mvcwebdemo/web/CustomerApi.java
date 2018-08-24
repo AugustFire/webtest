@@ -24,7 +24,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Project: mvcweb-demo.
@@ -63,7 +65,7 @@ public class CustomerApi {
                     "attachment; filename="+ URLEncoder.encode("商品.txt","utf-8"))
                 .build();*/
 
-        String fileName = "商品链接_"+new Date().toLocaleString();
+        String fileName = "商品链接_" + new Date().toLocaleString();
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         workbook.write(os);
         byte[] content = os.toByteArray();
@@ -73,7 +75,7 @@ public class CustomerApi {
         res.setHeader("Content-Disposition", "attachment;filename="
                 + new String((fileName + ".xls").getBytes(), "iso-8859-1"));
         ServletOutputStream output = res.getOutputStream();
-        FileCopyUtils.copy(is,output);
+        FileCopyUtils.copy(is, output);
 
     }
 
@@ -83,7 +85,7 @@ public class CustomerApi {
     @Path("/queryUser")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> queryList(){
+    public List<User> queryList() {
         logger.info("hello!I am your logger!");
         List<User> all = userRepo.findAll();
         return all;
@@ -97,9 +99,17 @@ public class CustomerApi {
     ) {
         System.out.println(message);
         //把message发送到mq
-        amqpTemplate.convertAndSend("exchange1",null,message);
+        amqpTemplate.convertAndSend("exchange1", null, message);
         return message;
     }
 
-
+    @Path("/map")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map sayWhat() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("k1", "v1");
+        map.put("k2", "v2");
+        return map;
+    }
 }

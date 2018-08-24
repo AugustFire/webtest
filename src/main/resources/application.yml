@@ -2,21 +2,21 @@
 
 #Spring-rabbitMQ
 #是访问port不是15672,15672是api和管理界面的port
-spring:
-  rabbitmq:
-    addresses: 192.168.0.13
-    port: 5672
-    username: guest
-    password: guest
-    publisher-confirms: true
-    virtual-host: /
-  data:
-    mongodb:
-      database: test1
-      port: 27017
-      host: '192.168.0.12'
-      username: 'test1'
-      password: '123456'
+#spring:
+#  rabbitmq:
+#    addresses: 192.168.0.13
+#    port: 5672
+#    username: guest
+#    password: guest
+#    publisher-confirms: true
+#    virtual-host: /
+#  data:
+#    mongodb:
+#      database: test1
+#      port: 27017
+#      host: '192.168.0.12'
+#      username: 'test1'
+#      password: '123456'
 logging:
   path: /home/yzx/yzx-work/depoly/logs/
 
